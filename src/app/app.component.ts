@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DisplayService } from './display.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'VirtualScrollApp';
+
+  constructor(private service:DisplayService){}
+
+  mycards:any=[];
+
+  ngOnInit(){
+  this.getData();
+  }
+
+  getData(){
+    this.service.getImgs().subscribe((data)=>{
+      console.log(data);
+      this.mycards= data;
+    });
+  }
 }
